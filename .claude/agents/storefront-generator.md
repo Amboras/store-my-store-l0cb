@@ -24,30 +24,13 @@ Read the complete plan to understand:
 - Collection page layout
 - Theme customization
 
-### 2. Generate Store ID
+### 2. Customize Storefront In Place
 
-Create a unique store ID:
-```
-store-{timestamp} or store-{store-name-slug}
-Example: store-premium-skincare or store-1709856000
-```
+**IMPORTANT**: Do NOT create a `generated-stores/` folder. Customize the existing `storefront/` directory directly.
 
-### 3. Copy Template
+### 3. Update package.json
 
-Copy the selected template to generated-stores:
-
-```bash
-# Copy template
-cp -r storefront-templates/minimal generated-stores/{store-id}
-
-# Or for other templates:
-# cp -r storefront-templates/bold generated-stores/{store-id}
-# cp -r storefront-templates/luxury generated-stores/{store-id}
-```
-
-### 4. Update package.json
-
-Edit `generated-stores/{store-id}/package.json`:
+Edit `storefront/package.json`:
 
 ```json
 {
@@ -60,7 +43,7 @@ Edit `generated-stores/{store-id}/package.json`:
 
 ### 5. Configure Medusa Client
 
-Edit `generated-stores/{store-id}/lib/medusa-client.ts`:
+Edit `storefront/lib/medusa-client.ts`:
 
 ```typescript
 import Medusa from "@medusajs/js-sdk"
@@ -74,7 +57,7 @@ export const medusaClient = new Medusa({
 
 ### 6. Set Up Environment Variables
 
-Create `generated-stores/{store-id}/.env.local`:
+Create `storefront/.env.local`:
 
 ```env
 # Medusa Backend
@@ -87,12 +70,12 @@ NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=
 
 Copy example:
 ```bash
-cp generated-stores/{store-id}/.env.local.example generated-stores/{store-id}/.env.local
+cp storefront/.env.local.example storefront/.env.local
 ```
 
 ### 7. Customize Homepage
 
-Edit `generated-stores/{store-id}/app/page.tsx` based on plan.
+Edit `storefront/app/page.tsx` based on plan.
 
 #### Hero Section
 
@@ -159,7 +142,7 @@ Based on plan's hero style:
 
 ### 8. Create Product Components
 
-Create `generated-stores/{store-id}/components/product-grid.tsx`:
+Create `storefront/components/product-grid.tsx`:
 
 ```typescript
 'use client'
@@ -182,7 +165,7 @@ export default function ProductGrid({ limit }: { limit?: number }) {
 }
 ```
 
-Create `generated-stores/{store-id}/components/product-card.tsx`:
+Create `storefront/components/product-card.tsx`:
 
 ```typescript
 import Image from 'next/image'
@@ -210,7 +193,7 @@ export default function ProductCard({ product }) {
 
 ### 9. Create Product Hooks
 
-Create `generated-stores/{store-id}/hooks/use-products.ts`:
+Create `storefront/hooks/use-products.ts`:
 
 ```typescript
 'use client'
@@ -233,7 +216,7 @@ export function useProducts(limit?: number) {
 
 ### 10. Create Product Page
 
-Create `generated-stores/{store-id}/app/products/[handle]/page.tsx`:
+Create `storefront/app/products/[handle]/page.tsx`:
 
 ```typescript
 import { notFound } from 'next/navigation'
@@ -291,7 +274,7 @@ Create basic cart functionality:
 
 ### 12. Update Layout
 
-Edit `generated-stores/{store-id}/app/layout.tsx`:
+Edit `storefront/app/layout.tsx`:
 
 ```typescript
 import type { Metadata } from 'next'
@@ -334,9 +317,9 @@ Based on plan's design direction.
 ### 14. Verify Installation
 
 ```bash
-cd generated-stores/{store-id}
+cd storefront
 
-# Install dependencies
+# Install dependencies (if needed)
 npm install
 
 # Type check
@@ -394,9 +377,9 @@ Visit http://localhost:3000 and verify:
 
 ## Output Structure
 
-Generated store should have:
+Customized storefront should have:
 ```
-generated-stores/{store-id}/
+storefront/
 ├── app/
 │   ├── layout.tsx
 │   ├── page.tsx
@@ -426,7 +409,7 @@ Report to main process:
 ✅ Storefront Generated
 
 **Store ID**: {store-id}
-**Location**: `generated-stores/{store-id}/`
+**Location**: `storefront/`
 **Template**: {minimal/bold/luxury}
 
 **Pages Created:**
@@ -441,7 +424,7 @@ Report to main process:
 - Header & Footer
 
 **Next Steps:**
-1. Install dependencies: `cd generated-stores/{store-id} && npm install`
+1. Install dependencies: `cd storefront && npm install` (if needed)
 2. Start dev server: `npm run dev`
 3. Visit: http://localhost:3000
 4. Customize theme: Run theme-customizer agent

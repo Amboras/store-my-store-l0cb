@@ -29,14 +29,14 @@ Spawn the `medusa-configurator` agent to:
 - Create product types and categories (if needed)
 - Set up workflows (if needed)
 
-### 3. Generate Storefront
+### 3. Customize Storefront
 
 Spawn the `storefront-generator` agent to:
-- Select template based on PLAN.md (minimal/bold/luxury)
-- Copy template to `generated-stores/{store-id}/`
+- Customize the existing `storefront/` directory based on PLAN.md
 - Configure Medusa client connection
-- Set up environment variables
-- Create basic pages based on plan
+- Update environment variables
+- Create/update pages based on plan
+- **IMPORTANT**: Edit files in place, do NOT copy or create new directories
 
 ### 4. Customize Theme
 
@@ -53,15 +53,15 @@ After agents complete:
 ```bash
 # Type checking
 cd backend && npm run type-check
-cd generated-stores/{store-id} && npm run type-check
+cd storefront && npm run type-check
 
 # Linting
 cd backend && npm run lint
-cd generated-stores/{store-id} && npm run lint
+cd storefront && npm run lint
 
 # Build verification
 cd backend && npm run build
-cd generated-stores/{store-id} && npm run build
+cd storefront && npm run build
 ```
 
 ### 6. Local Testing
@@ -79,7 +79,7 @@ cd backend && npm run migrate
 cd backend && npm run dev
 
 # In another terminal, start storefront
-cd generated-stores/{store-id} && npm run dev
+cd storefront && npm run dev
 ```
 
 Verify:
@@ -98,7 +98,7 @@ Provide user with:
 ## Store Implementation Complete! ✅
 
 **Store ID**: {store-id}
-**Location**: `generated-stores/{store-id}/`
+**Location**: `storefront/`
 
 ### Services Running
 
@@ -120,7 +120,7 @@ Provide user with:
 
 3. **Make Edits**
    - Run `/edit-store` to make changes
-   - Edit files directly in `generated-stores/{store-id}/`
+   - Edit files directly in `storefront/`
 
 4. **Deploy**
    - Run `/deploy-store` when ready for production
@@ -128,7 +128,7 @@ Provide user with:
 ### Configuration
 
 Backend environment: `backend/.env`
-Storefront environment: `generated-stores/{store-id}/.env.local`
+Storefront environment: `storefront/.env.local`
 
 ### Documentation
 

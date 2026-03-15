@@ -24,11 +24,11 @@ Read the theme customization section to understand:
 
 ### 2. Identify Store Location
 
-Find the generated store in `generated-stores/{store-id}/`.
+Find the generated store in `storefront/`.
 
 ### 3. Update Tailwind Configuration
 
-Edit `generated-stores/{store-id}/tailwind.config.ts`:
+Edit `storefront/tailwind.config.ts`:
 
 #### Color Palette
 
@@ -146,7 +146,7 @@ borderRadius: {
 
 #### Import Google Fonts
 
-Edit `generated-stores/{store-id}/app/layout.tsx`:
+Edit `storefront/app/layout.tsx`:
 
 ```typescript
 import { Inter, Playfair_Display } from 'next/font/google'
@@ -191,7 +191,7 @@ Update headings to use display font:
 
 ### 5. Update Global Styles
 
-Edit `generated-stores/{store-id}/app/globals.css`:
+Edit `storefront/app/globals.css`:
 
 ```css
 @tailwind base;
@@ -336,7 +336,7 @@ Check that theme is applied consistently:
 Ensure theme works across breakpoints:
 
 ```bash
-cd generated-stores/{store-id}
+cd storefront
 npm run dev
 ```
 
@@ -354,7 +354,7 @@ Test:
 
 ### 12. Document Theme
 
-Create `generated-stores/{store-id}/THEME.md`:
+Create `storefront/THEME.md`:
 
 ```markdown
 # Theme Documentation

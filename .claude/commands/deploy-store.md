@@ -35,7 +35,7 @@ cat .env.example
 ### Storefront Preparation
 
 ```bash
-cd generated-stores/{store-id}
+cd storefront
 
 # Verify build works
 npm run build
@@ -153,7 +153,7 @@ cat .env.local.example
 2. **Import Project**
    - Click "Add New Project"
    - Import your repository
-   - Select `generated-stores/{store-id}` as root directory
+   - Select `storefront` as root directory
 
 3. **Configure Build Settings**
    ```

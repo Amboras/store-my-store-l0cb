@@ -17,7 +17,7 @@ User provides edit requests like:
 ### 1. Identify the Store
 
 Determine which store to edit:
-- If only one store exists in `generated-stores/`, use that
+- If only one store exists in `storefront/`, use that
 - If multiple stores exist, ask user which one
 - Default to most recently created if unclear
 
@@ -87,7 +87,7 @@ After making edits:
 
 ```bash
 # Type check
-cd generated-stores/{store-id} && npm run type-check
+cd storefront/{store-id} && npm run type-check
 
 # Check for errors in dev mode
 # (server should already be running with hot reload)
