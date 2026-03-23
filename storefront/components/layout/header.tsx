@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Search, ShoppingBag, User, Menu, X } from 'lucide-react'
+import { Search, ShoppingBag, User, Menu, X, LogIn } from 'lucide-react'
 import { useCart } from '@/hooks/use-cart'
+import { useAuth } from '@/hooks/use-auth'
 import CartDrawer from '@/components/cart/cart-drawer'
 import { useCollections } from '@/hooks/use-collections'
 
 export default function Header() {
   const { itemCount } = useCart()
+  const { isLoggedIn } = useAuth()
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -71,11 +73,11 @@ export default function Header() {
                 <Search className="h-5 w-5" />
               </Link>
               <Link
-                href="/account"
+                href={isLoggedIn ? '/account' : '/auth/login'}
                 className="p-2 hover:opacity-70 transition-opacity hidden sm:block"
-                aria-label="Account"
+                aria-label={isLoggedIn ? 'Account' : 'Sign in'}
               >
-                <User className="h-5 w-5" />
+                {isLoggedIn ? <User className="h-5 w-5" /> : <LogIn className="h-5 w-5" />}
               </Link>
               <button
                 onClick={() => setIsCartOpen(true)}
@@ -132,11 +134,11 @@ export default function Header() {
               ))}
               <div className="pt-4 space-y-1">
                 <Link
-                  href="/account"
+                  href={isLoggedIn ? '/account' : '/auth/login'}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-3 text-muted-foreground"
                 >
-                  Account
+                  {isLoggedIn ? 'Account' : 'Sign In'}
                 </Link>
                 <Link
                   href="/search"
