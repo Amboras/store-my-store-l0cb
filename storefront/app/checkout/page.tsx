@@ -607,8 +607,8 @@ export default function CheckoutPage() {
                       {(() => {
                         const isTaxInclusive = cart?.items?.some((item: CartLineItem) => item.is_tax_inclusive)
                         const checkoutSubtotal = isTaxInclusive
-                          ? ((cart as any)?.original_item_total ?? 0)
-                          : ((cart as any)?.original_item_subtotal ?? cart?.subtotal ?? 0)
+                          ? (cart?.original_item_total ?? 0)
+                          : (cart?.original_item_subtotal ?? cart?.subtotal ?? 0)
                         return (
                           <>
                             <div className="flex justify-between">

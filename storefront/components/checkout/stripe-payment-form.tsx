@@ -49,8 +49,8 @@ function CheckoutForm({
         })
         onPaymentSuccess()
       }
-    } catch (err: any) {
-      onError(err?.message || 'An unexpected error occurred.')
+    } catch (err: unknown) {
+      onError(err instanceof Error ? err.message : 'An unexpected error occurred.')
     } finally {
       setIsProcessing(false)
     }

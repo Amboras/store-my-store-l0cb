@@ -8,17 +8,30 @@ import { trackMetaEvent } from '@/lib/meta-pixel'
 export default function SearchPage() {
   const [query, setQuery] = useState('')
   const trackedQuery = useRef<string | null>(null)
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const normalizedQuery = query.trim()
     if (!normalizedQuery) return
     if (trackedQuery.current === normalizedQuery) return
 
-    trackedQuery.current = normalizedQuery
-    trackMetaEvent('Search', {
-      search_string: normalizedQuery,
-      content_name: normalizedQuery,
-    })
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current)
+    }
+
+    debounceTimer.current = setTimeout(() => {
+      trackedQuery.current = normalizedQuery
+      trackMetaEvent('Search', {
+        search_string: normalizedQuery,
+        content_name: normalizedQuery,
+      })
+    }, 300)
+
+    return () => {
+      if (debounceTimer.current) {
+        clearTimeout(debounceTimer.current)
+      }
+    }
   }, [query])
 
   return (

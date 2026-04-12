@@ -6,7 +6,6 @@ import type { Fulfillment } from '@/types'
 
 interface TrackingInfoProps {
   fulfillment: Fulfillment
-  currencyCode: string
 }
 
 export default function TrackingInfo({ fulfillment }: TrackingInfoProps) {

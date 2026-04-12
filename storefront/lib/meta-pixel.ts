@@ -59,6 +59,7 @@ function ensureWindowState(): void {
 
 function injectPixelScript(pixelId: string): void {
   if (!canUseBrowserApi()) return
+  if (!/^\d{5,32}$/.test(pixelId)) return
   if (document.getElementById('amboras-meta-pixel-script')) return
 
   const inlineScript = document.createElement('script')

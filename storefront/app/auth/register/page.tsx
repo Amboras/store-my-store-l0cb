@@ -36,8 +36,8 @@ export default function RegisterPage() {
       })
       toast.success('Account created successfully!')
       router.push('/account')
-    } catch (error: any) {
-      toast.error(error?.message || 'Failed to create account')
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Failed to create account')
     }
   }
 

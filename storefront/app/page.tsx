@@ -92,7 +92,7 @@ export default function HomePage() {
         </section>
       ) : collections && collections.length > 0 ? (
         <>
-          {collections.map((collection: any, index: number) => (
+          {collections.map((collection: { id: string; handle: string; title: string; metadata?: Record<string, unknown> }, index: number) => (
             <CollectionSection
               key={collection.id}
               collection={collection}
