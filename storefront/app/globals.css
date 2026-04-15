@@ -4,35 +4,32 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 0 0% 10%;
-    --muted: 40 10% 94%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 35 40% 50%;
+    /* The Resin Anvil — Deep Forge Palette */
+    --background: 220 18% 97%;
+    --foreground: 222 35% 10%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 38 82% 48%;
     --accent-foreground: 0 0% 100%;
-    --border: 40 10% 88%;
-    --ring: 35 40% 50%;
-    --primary: 0 0% 10%;
+    --border: 220 14% 86%;
+    --ring: 38 82% 48%;
+    --primary: 222 35% 10%;
     --primary-foreground: 0 0% 98%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-
-    /* Brand colors (dynamically injected from Store.metadata.brand) */
-    /* Access in CSS: var(--brand-primary), var(--brand-secondary) */
-    /* Managed by BrandStyleInjector component */
   }
 
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 40 20% 94%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 35 45% 55%;
+    --background: 222 30% 7%;
+    --foreground: 38 25% 92%;
+    --muted: 222 20% 12%;
+    --muted-foreground: 220 12% 55%;
+    --accent: 38 82% 52%;
     --accent-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --ring: 35 45% 55%;
-    --primary: 40 20% 94%;
-    --primary-foreground: 0 0% 6%;
+    --border: 222 20% 18%;
+    --ring: 38 82% 52%;
+    --primary: 38 25% 92%;
+    --primary-foreground: 222 30% 7%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
   }
@@ -72,7 +69,16 @@
     @apply w-full;
   }
 
-  /* Brand color utilities - uses colors from Store.metadata.brand */
+  .link-underline-gold::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px w-0 transition-all duration-300;
+    background-color: hsl(38 82% 48%);
+  }
+  .link-underline-gold:hover::after {
+    @apply w-full;
+  }
+
+  /* Brand color utilities */
   .btn-brand-primary {
     background-color: var(--brand-primary, hsl(var(--primary)));
     color: white;
@@ -100,6 +106,39 @@
   .bg-brand-secondary {
     background-color: var(--brand-secondary, hsl(var(--accent)));
   }
+
+  /* Forge / gold shimmer effect */
+  .gold-shimmer {
+    background: linear-gradient(
+      105deg,
+      hsl(38 82% 38%) 0%,
+      hsl(45 90% 58%) 45%,
+      hsl(38 82% 42%) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Dark forge texture panel */
+  .forge-panel {
+    background: linear-gradient(135deg, hsl(222 35% 8%) 0%, hsl(222 30% 13%) 100%);
+  }
+
+  /* Amber glow button */
+  .btn-gold {
+    background: linear-gradient(105deg, hsl(38 82% 44%) 0%, hsl(45 90% 54%) 100%);
+    color: hsl(222 35% 8%);
+    font-weight: 700;
+  }
+  .btn-gold:hover {
+    background: linear-gradient(105deg, hsl(38 82% 50%) 0%, hsl(45 90% 60%) 100%);
+  }
+
+  /* Subtle rune border decoration */
+  .rune-border {
+    border-image: linear-gradient(90deg, transparent, hsl(38 82% 48%), transparent) 1;
+  }
 }
 
 /* Smooth scrolling */
@@ -107,9 +146,10 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Selection color */
+/* Selection color — amber forge */
 ::selection {
-  @apply bg-accent/20 text-foreground;
+  background: hsl(38 82% 48% / 0.25);
+  color: hsl(222 35% 10%);
 }
 
 /* Focus styles */
@@ -119,16 +159,27 @@ html {
 
 /* Cookie consent animation */
 @keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 .animate-fade-in {
   animation: fade-in 0.3s ease-out;
+}
+
+/* Forge shimmer keyframe */
+@keyframes forge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+.animate-forge-pulse {
+  animation: forge-pulse 3s ease-in-out infinite;
+}
+
+/* Stock urgency flash */
+@keyframes stock-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.animate-stock-flash {
+  animation: stock-flash 2s ease-in-out infinite;
 }
